@@ -96,7 +96,7 @@ function ProductPage() {
                   toast.success(`${data.title} added to bag`, { position: "top-center" });
                 }}
                 disabled={busy}
-                className="mt-8 inline-flex items-center justify-center gap-2 h-13 px-8 py-4 rounded-full bg-primary text-primary-foreground text-sm font-semibold tracking-wide hover:bg-ink transition disabled:opacity-60 min-w-[240px]"
+                className="mt-8 inline-flex items-center justify-center gap-2 h-14 px-8 py-4 rounded-full bg-primary text-primary-foreground text-sm font-semibold tracking-wide hover:bg-ink transition disabled:opacity-60 min-w-[240px]"
               >
                 {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <><Plus className="h-4 w-4" /> Add to bag</>}
               </button>

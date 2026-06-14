@@ -160,7 +160,7 @@ export function StevenAIFloatingButton({ onClick, open }: { onClick: () => void;
   return (
     <button
       onClick={onClick}
-      className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 h-13 pl-3 pr-5 py-3 rounded-full bg-primary text-primary-foreground shadow-product hover:bg-ink transition group"
+      className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 h-14 pl-3 pr-5 py-3 rounded-full bg-primary text-primary-foreground shadow-product hover:bg-ink transition group"
     >
       <span className="h-7 w-7 rounded-full bg-clinical inline-flex items-center justify-center">
         <Sparkles className="h-3.5 w-3.5 text-clinical-foreground" />
