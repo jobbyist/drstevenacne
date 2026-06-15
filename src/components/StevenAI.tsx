@@ -151,6 +151,18 @@ export function StevenAI({ open, onClose }: { open: boolean; onClose: () => void
           )}
         </div>
 
+
+        {regimenReady && (
+          <div className="px-4 py-3 border-t border-border bg-clinical/5">
+            <button
+              onClick={downloadPdf}
+              className="w-full h-11 inline-flex items-center justify-center gap-2 rounded-full bg-clinical text-clinical-foreground hover:bg-primary transition text-[12px] font-semibold uppercase tracking-[0.16em]"
+            >
+              <Download className="h-4 w-4" /> Download Regimen PDF
+            </button>
+          </div>
+        )}
+
         <form
           onSubmit={(e) => { e.preventDefault(); submit(input); }}
           className="border-t border-border p-3 bg-background"
