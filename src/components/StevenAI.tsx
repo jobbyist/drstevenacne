@@ -53,6 +53,31 @@ export function StevenAI({ open, onClose }: { open: boolean; onClose: () => void
     setInput("");
   };
 
+  const transcript = useMemo(
+    () =>
+      messages
+        .map((m) => {
+          const text = m.parts.map((p) => (p.type === "text" ? p.text : "")).join("");
+          return `${m.role === "user" ? "You" : "STEVEN AI"}: ${text}`;
+        })
+        .join("\n\n"),
+    [messages],
+  );
+
+  const regimenReady = useMemo(
+    () =>
+      messages.some(
+        (m) =>
+          m.role === "assistant" &&
+          /Your Custom AM Routine|Your Acne Profile/i.test(
+            m.parts.map((p) => (p.type === "text" ? p.text : "")).join(""),
+          ),
+      ),
+    [messages],
+  );
+
+  const downloadPdf = () => generateRegimenPdf({ conversation: transcript });
+
   return (
     <>
       <div
