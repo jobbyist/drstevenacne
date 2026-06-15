@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -78,16 +79,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Dr Steven Acne - South Africa [Demo Website]" },
-      { name: "description", content: "Dermatologist developed formulations for acne prone skin. This is a demo website built by SkinLabs." },
+      {
+        name: "description",
+        content:
+          "Dermatologist developed formulations for acne prone skin. This is a demo website built by SkinLabs.",
+      },
       { name: "author", content: "Dr Steven Acne" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Dr Steven Acne - South Africa [Demo Website]" },
       { name: "twitter:title", content: "Dr Steven Acne - South Africa [Demo Website]" },
-      { property: "og:description", content: "Dermatologist developed formulations for acne prone skin. This is a demo website built by SkinLabs." },
-      { name: "twitter:description", content: "Dermatologist developed formulations for acne prone skin. This is a demo website built by SkinLabs." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/XReFES0pmgVbAyWMk0MoCURY6032/social-images/social-1781473570466-038a6f33-80e6-473e-94e6-14a5688ec5d0.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/XReFES0pmgVbAyWMk0MoCURY6032/social-images/social-1781473570466-038a6f33-80e6-473e-94e6-14a5688ec5d0.webp" },
+      {
+        property: "og:description",
+        content:
+          "Dermatologist developed formulations for acne prone skin. This is a demo website built by SkinLabs.",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Dermatologist developed formulations for acne prone skin. This is a demo website built by SkinLabs.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/XReFES0pmgVbAyWMk0MoCURY6032/social-images/social-1781473570466-038a6f33-80e6-473e-94e6-14a5688ec5d0.webp",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/XReFES0pmgVbAyWMk0MoCURY6032/social-images/social-1781473570466-038a6f33-80e6-473e-94e6-14a5688ec5d0.webp",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -114,6 +135,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <body>
         {children}
         <Scripts />
+        <Analytics />
       </body>
     </html>
   );

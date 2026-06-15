@@ -23,7 +23,9 @@ export function Header({ onOpenAI }: { onOpenAI: () => void }) {
   return (
     <>
       <div className="relative bg-primary text-primary-foreground text-[11px] tracking-[0.18em] uppercase text-center py-2 font-medium">
-        <span className="hidden sm:inline">Free delivery on orders over R750 · 60-day skin happiness guarantee</span>
+        <span className="hidden sm:inline">
+          Free delivery on orders over R750 · 60-day skin happiness guarantee
+        </span>
         <span className="sm:hidden">Free delivery over R750</span>
       </div>
       <header
@@ -51,7 +53,10 @@ export function Header({ onOpenAI }: { onOpenAI: () => void }) {
             >
               <Sparkles className="h-3.5 w-3.5" strokeWidth={2} /> Steven AI
             </button>
-            <button aria-label="Search" className="hidden md:inline-flex h-10 w-10 items-center justify-center rounded-full text-primary hover:bg-mist">
+            <button
+              aria-label="Search"
+              className="hidden md:inline-flex h-10 w-10 items-center justify-center rounded-full text-primary hover:bg-mist"
+            >
               <Search className="h-[18px] w-[18px]" strokeWidth={1.6} />
             </button>
             <CartDrawer />

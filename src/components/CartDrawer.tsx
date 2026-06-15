@@ -2,23 +2,36 @@ import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 
 import { Badge } from "@/components/ui/badge";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { ShoppingBag, Minus, Plus, Trash2, ExternalLink, Loader2 } from "lucide-react";
 import { useCartStore } from "@/stores/cart";
 import { formatPrice } from "@/lib/shopify";
 
 export function CartDrawer() {
   const [open, setOpen] = useState(false);
-  const { items, isLoading, isSyncing, updateQuantity, removeItem, getCheckoutUrl, syncCart } = useCartStore();
+  const { items, isLoading, isSyncing, updateQuantity, removeItem, getCheckoutUrl, syncCart } =
+    useCartStore();
   const totalItems = items.reduce((s, i) => s + i.quantity, 0);
   const totalPrice = items.reduce((s, i) => s + parseFloat(i.price.amount) * i.quantity, 0);
   const currency = items[0]?.price.currencyCode ?? "ZAR";
 
-  useEffect(() => { if (open) syncCart(); }, [open, syncCart]);
+  useEffect(() => {
+    if (open) syncCart();
+  }, [open, syncCart]);
 
   const handleCheckout = () => {
     const url = getCheckoutUrl();
-    if (url) { window.open(url, "_blank"); setOpen(false); }
+    if (url) {
+      window.open(url, "_blank");
+      setOpen(false);
+    }
   };
 
   return (
@@ -40,7 +53,9 @@ export function CartDrawer() {
         <SheetHeader className="p-0 text-left">
           <SheetTitle className="font-serif text-3xl text-primary">Your bag</SheetTitle>
           <SheetDescription>
-            {totalItems === 0 ? "Your bag is empty." : `${totalItems} item${totalItems !== 1 ? "s" : ""}`}
+            {totalItems === 0
+              ? "Your bag is empty."
+              : `${totalItems} item${totalItems !== 1 ? "s" : ""}`}
           </SheetDescription>
         </SheetHeader>
         <div className="flex flex-col flex-1 pt-6 min-h-0">
@@ -65,18 +80,26 @@ export function CartDrawer() {
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-medium text-sm text-primary truncate">{item.product.node.title}</h4>
-                        <p className="text-xs text-muted-foreground mt-0.5">{item.product.node.productType}</p>
+                        <h4 className="font-medium text-sm text-primary truncate">
+                          {item.product.node.title}
+                        </h4>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          {item.product.node.productType}
+                        </p>
                         <div className="mt-2 flex items-center gap-1">
                           <button
                             onClick={() => updateQuantity(item.variantId, item.quantity - 1)}
                             className="h-7 w-7 inline-flex items-center justify-center border border-border rounded-sm hover:bg-mist"
-                          ><Minus className="h-3 w-3" /></button>
+                          >
+                            <Minus className="h-3 w-3" />
+                          </button>
                           <span className="w-8 text-center text-sm">{item.quantity}</span>
                           <button
                             onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
                             className="h-7 w-7 inline-flex items-center justify-center border border-border rounded-sm hover:bg-mist"
-                          ><Plus className="h-3 w-3" /></button>
+                          >
+                            <Plus className="h-3 w-3" />
+                          </button>
                         </div>
                       </div>
                       <div className="flex flex-col items-end justify-between">
@@ -84,9 +107,14 @@ export function CartDrawer() {
                           onClick={() => removeItem(item.variantId)}
                           aria-label="Remove"
                           className="text-muted-foreground hover:text-destructive"
-                        ><Trash2 className="h-4 w-4" /></button>
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
                         <p className="text-sm font-semibold text-primary">
-                          {formatPrice(parseFloat(item.price.amount) * item.quantity, item.price.currencyCode)}
+                          {formatPrice(
+                            parseFloat(item.price.amount) * item.quantity,
+                            item.price.currencyCode,
+                          )}
                         </p>
                       </div>
                     </li>
@@ -96,21 +124,33 @@ export function CartDrawer() {
               <div className="pt-5 border-t border-border space-y-4">
                 <div className="flex justify-between items-baseline">
                   <span className="text-sm text-muted-foreground">Subtotal</span>
-                  <span className="text-xl font-semibold text-primary">{formatPrice(totalPrice, currency)}</span>
+                  <span className="text-xl font-semibold text-primary">
+                    {formatPrice(totalPrice, currency)}
+                  </span>
                 </div>
-                <p className="text-xs text-muted-foreground">Shipping & taxes calculated at checkout.</p>
+                <p className="text-xs text-muted-foreground">
+                  Shipping & taxes calculated at checkout.
+                </p>
                 <button
                   onClick={handleCheckout}
                   disabled={items.length === 0 || isLoading || isSyncing}
                   className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-full bg-primary text-primary-foreground text-sm font-medium tracking-wide hover:bg-ink transition disabled:opacity-60"
                 >
-                  {isLoading || isSyncing ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Checkout securely <ExternalLink className="w-4 h-4" /></>}
+                  {isLoading || isSyncing ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <>
+                      Checkout securely <ExternalLink className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
                 <Link
                   to="/"
                   onClick={() => setOpen(false)}
                   className="block text-center text-xs uppercase tracking-[0.2em] text-clinical hover:underline"
-                >Continue shopping</Link>
+                >
+                  Continue shopping
+                </Link>
               </div>
             </>
           )}

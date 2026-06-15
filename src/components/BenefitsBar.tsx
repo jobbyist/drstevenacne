@@ -15,7 +15,9 @@ export function BenefitsBar() {
           {BENEFITS.map(({ icon: Icon, label }) => (
             <li key={label} className="flex items-center gap-3 text-primary">
               <Icon className="h-5 w-5 text-clinical shrink-0" strokeWidth={1.6} />
-              <span className="text-[12px] md:text-[13px] tracking-[0.04em] font-medium leading-snug">{label}</span>
+              <span className="text-[12px] md:text-[13px] tracking-[0.04em] font-medium leading-snug">
+                {label}
+              </span>
             </li>
           ))}
         </ul>

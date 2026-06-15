@@ -87,13 +87,15 @@ export async function storefrontApiRequest(query: string, variables: Record<stri
 
   if (response.status === 402) {
     toast.error("Shopify: Payment required", {
-      description: "Shopify API access requires an active billing plan. Visit admin.shopify.com to upgrade.",
+      description:
+        "Shopify API access requires an active billing plan. Visit admin.shopify.com to upgrade.",
     });
     return;
   }
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const data = await response.json();
-  if (data.errors) throw new Error(data.errors.map((e: { message: string }) => e.message).join(", "));
+  if (data.errors)
+    throw new Error(data.errors.map((e: { message: string }) => e.message).join(", "));
   return data;
 }
 

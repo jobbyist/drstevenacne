@@ -25,7 +25,10 @@ function NotFound() {
     <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
       <h1 className="font-serif text-4xl text-primary">Product not found</h1>
       <p className="mt-3 text-muted-foreground">It may have moved or been discontinued.</p>
-      <Link to="/" className="mt-6 inline-flex items-center gap-2 h-11 px-6 rounded-full bg-primary text-primary-foreground text-sm">
+      <Link
+        to="/"
+        className="mt-6 inline-flex items-center gap-2 h-11 px-6 rounded-full bg-primary text-primary-foreground text-sm"
+      >
         <ArrowLeft className="h-4 w-4" /> Back to shop
       </Link>
     </div>
@@ -52,31 +55,49 @@ function ProductPage() {
     <div className="min-h-screen bg-background">
       <Header onOpenAI={() => setAiOpen(true)} />
       <main className="container-px mx-auto max-w-[1400px] py-10 md:py-14">
-        <button onClick={() => router.history.back()} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-clinical mb-8">
+        <button
+          onClick={() => router.history.back()}
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-clinical mb-8"
+        >
           <ArrowLeft className="h-4 w-4" /> Back
         </button>
 
         {isLoading ? (
-          <div className="py-32 flex justify-center"><Loader2 className="h-6 w-6 animate-spin text-clinical" /></div>
+          <div className="py-32 flex justify-center">
+            <Loader2 className="h-6 w-6 animate-spin text-clinical" />
+          </div>
         ) : !data ? (
           <NotFound />
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
             <div className="bg-mist rounded-2xl aspect-square flex items-center justify-center overflow-hidden">
               {data.images?.edges?.[0]?.node ? (
-                <img src={data.images.edges[0].node.url} alt={data.title} className="w-full h-full object-contain p-10 md:p-16" />
+                <img
+                  src={data.images.edges[0].node.url}
+                  alt={data.title}
+                  className="w-full h-full object-contain p-10 md:p-16"
+                />
               ) : null}
             </div>
             <div>
               <span className="eyebrow">{data.productType}</span>
-              <h1 className="mt-3 font-serif text-4xl md:text-5xl lg:text-6xl text-primary text-balance">{data.title}</h1>
-              <p className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-lg">{data.description}</p>
+              <h1 className="mt-3 font-serif text-4xl md:text-5xl lg:text-6xl text-primary text-balance">
+                {data.title}
+              </h1>
+              <p className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-lg">
+                {data.description}
+              </p>
 
               <div className="mt-8 flex items-baseline gap-3">
                 <span className="text-3xl font-semibold text-primary">
-                  {formatPrice(data.priceRange.minVariantPrice.amount, data.priceRange.minVariantPrice.currencyCode)}
+                  {formatPrice(
+                    data.priceRange.minVariantPrice.amount,
+                    data.priceRange.minVariantPrice.currencyCode,
+                  )}
                 </span>
-                <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">incl. VAT</span>
+                <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                  incl. VAT
+                </span>
               </div>
 
               <button
@@ -98,7 +119,13 @@ function ProductPage() {
                 disabled={busy}
                 className="mt-8 inline-flex items-center justify-center gap-2 h-14 px-8 py-4 rounded-full bg-primary text-primary-foreground text-sm font-semibold tracking-wide hover:bg-ink transition disabled:opacity-60 min-w-[240px]"
               >
-                {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <><Plus className="h-4 w-4" /> Add to bag</>}
+                {busy ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <>
+                    <Plus className="h-4 w-4" /> Add to bag
+                  </>
+                )}
               </button>
 
               <ul className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-px bg-border rounded-lg overflow-hidden">
@@ -115,8 +142,12 @@ function ProductPage() {
               </ul>
 
               <div className="mt-10 border-t border-border pt-6 space-y-3 text-sm text-muted-foreground">
-                <p><strong className="text-primary">Free delivery</strong> on orders over R750.</p>
-                <p><strong className="text-primary">60-day skin happiness</strong> guarantee.</p>
+                <p>
+                  <strong className="text-primary">Free delivery</strong> on orders over R750.
+                </p>
+                <p>
+                  <strong className="text-primary">60-day skin happiness</strong> guarantee.
+                </p>
               </div>
             </div>
           </div>
