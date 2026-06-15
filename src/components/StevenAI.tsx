@@ -1,14 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
-import { X, Send, Sparkles, Loader2 } from "lucide-react";
+import { X, Send, Sparkles, Loader2, Download } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import { generateRegimenPdf } from "@/lib/regimen-pdf";
 
 const SUGGESTIONS = [
-  "I get cystic breakouts on my jawline",
-  "What should I avoid eating?",
-  "Build me a beginner routine",
-  "How long until I see results?",
+  "Oily skin, jawline breakouts",
+  "Combination skin, blackheads on nose",
+  "Sensitive skin, mild whiteheads",
+  "Start the acne profile",
 ];
 
 const WELCOME: UIMessage = {
@@ -18,7 +19,7 @@ const WELCOME: UIMessage = {
     {
       type: "text",
       text:
-        "Hi — I'm **Steven AI**, your acne-care concierge. To build your custom Dr Steven regimen, tell me: **what does your skin look like today**, and **how long have you been dealing with breakouts?**",
+        "Hi — I'm **STEVEN AI**, your acne-care concierge. I'll ask **6 quick questions** to build your custom Dr Steven regimen (skin type, breakout pattern, severity, routine history, sensitivities, and lifestyle).\n\n**Q1 — Skin type:** How would you describe your skin most days? *Oily, combination, normal, dry, or very sensitive?*",
     },
   ],
 };
