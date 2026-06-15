@@ -17,8 +17,7 @@ const WELCOME: UIMessage = {
   parts: [
     {
       type: "text",
-      text:
-        "Hi — I'm **Steven AI**, your acne-care concierge. To build your custom Dr Steven regimen, tell me: **what does your skin look like today**, and **how long have you been dealing with breakouts?**",
+      text: "Hi — I'm **Steven AI**, your acne-care concierge. To build your custom Dr Steven regimen, tell me: **what does your skin look like today**, and **how long have you been dealing with breakouts?**",
     },
   ],
 };
@@ -70,10 +69,16 @@ export function StevenAI({ open, onClose }: { open: boolean; onClose: () => void
             </div>
             <div>
               <div className="text-sm font-semibold tracking-wide">STEVEN AI</div>
-              <div className="text-[11px] text-primary-foreground/70 tracking-[0.1em]">Acne concierge · online</div>
+              <div className="text-[11px] text-primary-foreground/70 tracking-[0.1em]">
+                Acne concierge · online
+              </div>
             </div>
           </div>
-          <button onClick={onClose} aria-label="Close" className="h-9 w-9 inline-flex items-center justify-center rounded-full hover:bg-primary-foreground/10 transition">
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            className="h-9 w-9 inline-flex items-center justify-center rounded-full hover:bg-primary-foreground/10 transition"
+          >
             <X className="h-4 w-4" />
           </button>
         </header>
@@ -111,14 +116,18 @@ export function StevenAI({ open, onClose }: { open: boolean; onClose: () => void
           )}
           {messages.length === 1 && !isLoading && (
             <div className="pt-2">
-              <div className="text-[11px] uppercase tracking-[0.18em] text-clinical font-semibold mb-3">Try asking</div>
+              <div className="text-[11px] uppercase tracking-[0.18em] text-clinical font-semibold mb-3">
+                Try asking
+              </div>
               <div className="flex flex-wrap gap-2">
                 {SUGGESTIONS.map((s) => (
                   <button
                     key={s}
                     onClick={() => submit(s)}
                     className="text-[13px] px-3 py-1.5 rounded-full bg-background border border-border text-primary hover:border-clinical hover:text-clinical transition"
-                  >{s}</button>
+                  >
+                    {s}
+                  </button>
                 ))}
               </div>
             </div>
@@ -126,7 +135,10 @@ export function StevenAI({ open, onClose }: { open: boolean; onClose: () => void
         </div>
 
         <form
-          onSubmit={(e) => { e.preventDefault(); submit(input); }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            submit(input);
+          }}
           className="border-t border-border p-3 bg-background"
         >
           <div className="relative flex items-end gap-2 rounded-xl border border-border focus-within:border-clinical px-3 py-2 transition">
@@ -134,7 +146,12 @@ export function StevenAI({ open, onClose }: { open: boolean; onClose: () => void
               ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); submit(input); } }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  submit(input);
+                }
+              }}
               rows={1}
               placeholder="Tell Steven AI about your skin…"
               className="flex-1 resize-none bg-transparent text-sm py-1.5 placeholder:text-muted-foreground focus:outline-none max-h-32"
@@ -145,10 +162,16 @@ export function StevenAI({ open, onClose }: { open: boolean; onClose: () => void
               className="h-9 w-9 inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground disabled:opacity-40 hover:bg-ink transition shrink-0"
               aria-label="Send"
             >
-              {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+              {isLoading ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Send className="h-4 w-4" />
+              )}
             </button>
           </div>
-          <p className="text-[10px] text-muted-foreground mt-2 px-1">AI guidance — not a medical diagnosis. For severe acne, see a dermatologist in person.</p>
+          <p className="text-[10px] text-muted-foreground mt-2 px-1">
+            AI guidance — not a medical diagnosis. For severe acne, see a dermatologist in person.
+          </p>
         </form>
       </aside>
     </>

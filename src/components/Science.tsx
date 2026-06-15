@@ -8,11 +8,12 @@ export function Science() {
         <div className="lg:col-span-6 order-2 lg:order-1">
           <span className="eyebrow">Built on evidence, not trends</span>
           <h2 className="mt-3 font-serif text-4xl md:text-5xl lg:text-6xl text-primary text-balance">
-            A dermatologist's clinic, <br/><span className="italic text-clinical">distilled into a bottle.</span>
+            A dermatologist's clinic, <br />
+            <span className="italic text-clinical">distilled into a bottle.</span>
           </h2>
           <p className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-xl">
-            For two decades Dr Steven has treated acne-prone skin in clinic — from teenage breakouts to
-            adult hormonal cycles. Every formula here is the result of that practice: actives at
+            For two decades Dr Steven has treated acne-prone skin in clinic — from teenage breakouts
+            to adult hormonal cycles. Every formula here is the result of that practice: actives at
             clinically meaningful concentrations, paired with barrier-supporting ingredients so your
             skin clears <em>without</em> the irritation typically associated with acne treatments.
           </p>
@@ -23,7 +24,10 @@ export function Science() {
               "Zinc PCA — controls oil and supports skin repair.",
               "Ceramides + glycerin — rebuild the moisture barrier.",
             ].map((t) => (
-              <li key={t} className="flex gap-3"><span className="mt-2 h-1.5 w-1.5 rounded-full bg-clinical shrink-0" />{t}</li>
+              <li key={t} className="flex gap-3">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-clinical shrink-0" />
+                {t}
+              </li>
             ))}
           </ul>
 
@@ -41,12 +45,17 @@ export function Science() {
 
         <div className="lg:col-span-6 order-1 lg:order-2">
           <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-mist">
-            <img src={dermatologist} alt="Dr Steven, founder dermatologist" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+            <img
+              src={dermatologist}
+              alt="Dr Steven, founder dermatologist"
+              className="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+            />
             <div className="absolute bottom-6 left-6 right-6 bg-background/95 backdrop-blur rounded-xl p-5 shadow-soft">
               <div className="eyebrow">20 years in practice</div>
               <p className="mt-2 text-sm text-primary leading-relaxed">
-                Trained at leading dermatology institutions. Active research in inflammatory acne and
-                post-inflammatory hyperpigmentation in skin of colour.
+                Trained at leading dermatology institutions. Active research in inflammatory acne
+                and post-inflammatory hyperpigmentation in skin of colour.
               </p>
             </div>
           </div>

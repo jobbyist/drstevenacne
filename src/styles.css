@@ -52,15 +52,15 @@
   --foreground: oklch(0.18 0.045 260);
 
   /* Brand */
-  --ink: oklch(0.18 0.045 260);             /* deep navy ink */
-  --primary: oklch(0.25 0.08 260);          /* DR VICTOR navy */
+  --ink: oklch(0.18 0.045 260); /* deep navy ink */
+  --primary: oklch(0.25 0.08 260); /* DR VICTOR navy */
   --primary-foreground: oklch(0.99 0 0);
 
-  --clinical: oklch(0.55 0.19 255);         /* clinical bright blue */
+  --clinical: oklch(0.55 0.19 255); /* clinical bright blue */
   --clinical-foreground: oklch(0.99 0 0);
 
-  --mist: oklch(0.97 0.012 240);            /* pale icy surface */
-  --sand: oklch(0.985 0.005 80);            /* warm off-white */
+  --mist: oklch(0.97 0.012 240); /* pale icy surface */
+  --sand: oklch(0.985 0.005 80); /* warm off-white */
 
   --secondary: oklch(0.97 0.012 240);
   --secondary-foreground: oklch(0.25 0.08 260);
@@ -83,8 +83,13 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -92,8 +97,17 @@
     font-feature-settings: "ss01", "cv11";
     letter-spacing: -0.005em;
   }
-  h1, h2, h3, h4 { letter-spacing: -0.025em; font-weight: 600; }
-  .font-serif { font-family: var(--font-serif); letter-spacing: -0.02em; }
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+  .font-serif {
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
+  }
   .eyebrow {
     font-size: 0.72rem;
     letter-spacing: 0.22em;
@@ -104,23 +118,50 @@
 }
 
 @layer utilities {
-  .container-px { padding-left: 1.25rem; padding-right: 1.25rem; }
-  @media (min-width: 768px) { .container-px { padding-left: 2rem; padding-right: 2rem; } }
-  @media (min-width: 1280px) { .container-px { padding-left: 3rem; padding-right: 3rem; } }
+  .container-px {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-px {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container-px {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
 
-  .text-balance { text-wrap: balance; }
+  .text-balance {
+    text-wrap: balance;
+  }
   .marquee-fade {
     mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   }
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.animate-fade-up { animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-up {
+  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
 @keyframes shine {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }

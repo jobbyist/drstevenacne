@@ -17,9 +17,17 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Dr Steven Acne · Dermatologist-Developed Acne Skincare" },
-      { name: "description", content: "Clear, predictable results for acne-prone skin. A dermatologist-developed four-step regimen backed by 20 years of clinical experience." },
+      {
+        name: "description",
+        content:
+          "Clear, predictable results for acne-prone skin. A dermatologist-developed four-step regimen backed by 20 years of clinical experience.",
+      },
       { property: "og:title", content: "Dr Steven Acne · Dermatologist-Developed Acne Skincare" },
-      { property: "og:description", content: "Clear, predictable results for acne-prone skin. A dermatologist-developed four-step regimen." },
+      {
+        property: "og:description",
+        content:
+          "Clear, predictable results for acne-prone skin. A dermatologist-developed four-step regimen.",
+      },
     ],
   }),
   component: Home,
