@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
 import { CartDrawer } from "./CartDrawer";
+import { LanguageSwitch } from "./LanguageSwitch";
 import { Sparkles, Search } from "lucide-react";
 
 const NAV = [
@@ -55,6 +56,7 @@ export function Header({ onOpenAI }: { onOpenAI: () => void }) {
               <Search className="h-[18px] w-[18px]" strokeWidth={1.6} />
             </button>
             <CartDrawer />
+            <LanguageSwitch />
           </div>
         </div>
       </header>

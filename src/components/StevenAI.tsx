@@ -1,14 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
-import { X, Send, Sparkles, Loader2 } from "lucide-react";
+import { X, Send, Sparkles, Loader2, Download } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import { generateRegimenPdf } from "@/lib/regimen-pdf";
 
 const SUGGESTIONS = [
-  "I get cystic breakouts on my jawline",
-  "What should I avoid eating?",
-  "Build me a beginner routine",
-  "How long until I see results?",
+  "Oily skin, jawline breakouts",
+  "Combination skin, blackheads on nose",
+  "Sensitive skin, mild whiteheads",
+  "Start the acne profile",
 ];
 
 const WELCOME: UIMessage = {
@@ -18,7 +19,7 @@ const WELCOME: UIMessage = {
     {
       type: "text",
       text:
-        "Hi — I'm **Steven AI**, your acne-care concierge. To build your custom Dr Steven regimen, tell me: **what does your skin look like today**, and **how long have you been dealing with breakouts?**",
+        "Hi — I'm **STEVEN AI**, your acne-care concierge. I'll ask **6 quick questions** to build your custom Dr Steven regimen (skin type, breakout pattern, severity, routine history, sensitivities, and lifestyle).\n\n**Q1 — Skin type:** How would you describe your skin most days? *Oily, combination, normal, dry, or very sensitive?*",
     },
   ],
 };
@@ -51,6 +52,31 @@ export function StevenAI({ open, onClose }: { open: boolean; onClose: () => void
     sendMessage({ text: t });
     setInput("");
   };
+
+  const transcript = useMemo(
+    () =>
+      messages
+        .map((m) => {
+          const text = m.parts.map((p) => (p.type === "text" ? p.text : "")).join("");
+          return `${m.role === "user" ? "You" : "STEVEN AI"}: ${text}`;
+        })
+        .join("\n\n"),
+    [messages],
+  );
+
+  const regimenReady = useMemo(
+    () =>
+      messages.some(
+        (m) =>
+          m.role === "assistant" &&
+          /Your Custom AM Routine|Your Acne Profile/i.test(
+            m.parts.map((p) => (p.type === "text" ? p.text : "")).join(""),
+          ),
+      ),
+    [messages],
+  );
+
+  const downloadPdf = () => generateRegimenPdf({ conversation: transcript });
 
   return (
     <>
@@ -124,6 +150,18 @@ export function StevenAI({ open, onClose }: { open: boolean; onClose: () => void
             </div>
           )}
         </div>
+
+
+        {regimenReady && (
+          <div className="px-4 py-3 border-t border-border bg-clinical/5">
+            <button
+              onClick={downloadPdf}
+              className="w-full h-11 inline-flex items-center justify-center gap-2 rounded-full bg-clinical text-clinical-foreground hover:bg-primary transition text-[12px] font-semibold uppercase tracking-[0.16em]"
+            >
+              <Download className="h-4 w-4" /> Download Regimen PDF
+            </button>
+          </div>
+        )}
 
         <form
           onSubmit={(e) => { e.preventDefault(); submit(input); }}

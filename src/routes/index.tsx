@@ -10,6 +10,7 @@ import { Science } from "@/components/Science";
 import { AIBanner } from "@/components/AIBanner";
 import { Footer } from "@/components/Footer";
 import { StevenAI, StevenAIFloatingButton } from "@/components/StevenAI";
+import { PSAModal } from "@/components/PSAModal";
 import { storefrontApiRequest, STOREFRONT_QUERY, type ShopifyProduct } from "@/lib/shopify";
 import { useCartSync } from "@/hooks/use-cart-sync";
 
@@ -65,6 +66,7 @@ function Home() {
       <Footer />
       <StevenAIFloatingButton onClick={() => setAiOpen(true)} open={aiOpen} />
       <StevenAI open={aiOpen} onClose={() => setAiOpen(false)} />
+      <PSAModal />
     </div>
   );
 }
